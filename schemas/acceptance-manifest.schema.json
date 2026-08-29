@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alpaca-agent.local/schemas/acceptance-manifest.schema.json",
+  "type": "array",
+  "minItems": 180,
+  "maxItems": 180,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["stableId", "method", "owningPhase", "productionComponent", "fixtureIds", "classification", "expectedPublicOutcome", "safetyInvariant", "implementationStatus", "lastPassingCommit"],
+    "properties": {
+      "stableId": { "type": "string", "pattern": "^UT-[0-9]{3}$" },
+      "method": { "type": "string", "pattern": "^[A-Za-z0-9]+_[A-Za-z0-9]+" },
+      "owningPhase": { "type": "string", "minLength": 1 },
+      "productionComponent": { "type": "string", "minLength": 1 },
+      "fixtureIds": { "type": "array", "items": { "type": "string" } },
+      "classification": { "enum": ["normal-flow", "edge-case"] },
+      "expectedPublicOutcome": { "type": "string", "minLength": 1 },
+      "safetyInvariant": { "type": "string", "minLength": 1 },
+      "implementationStatus": { "enum": ["NOT_IMPLEMENTED", "IMPLEMENTED"] },
+      "lastPassingCommit": { "type": ["string", "null"] }
+    }
+  }
+}
