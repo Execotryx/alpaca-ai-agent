@@ -1,6 +1,6 @@
 # Alpaca Agent
 
-This repository currently contains the .NET 10 modular-monolith skeleton and the Phase 2A red unit-acceptance baseline defined by Section 10 of `Alpaca_AI_Agent_Framework_Neutral_Implementation_Plan.md`.
+This repository contains the .NET 10 modular-monolith skeleton, the Phase 2A unit-acceptance catalogue, and the first implemented behavioral slice. UT-040 through UT-055 cover the deterministic workflow kernel; remaining placeholder IDs stay red until implemented in dependency order.
 
 ## Validate the baseline
 
@@ -11,7 +11,7 @@ dotnet test tests/AlpacaAgent.UnitTests/AlpacaAgent.UnitTests.csproj --configura
 dotnet test tests/AlpacaAgent.UnitTests/AlpacaAgent.UnitTests.csproj --configuration Release --no-build --filter "FullyQualifiedName~AcceptanceCatalogIntegrityTests"
 ```
 
-The catalogue integrity test must pass. The 180 `StableId` tests intentionally fail with a precise `NOT_IMPLEMENTED` message until their owning behavioral phases are implemented. This is the expected Phase 2A red baseline, not a completed production suite.
+The catalogue integrity test and all IDs marked `IMPLEMENTED` in the manifest must pass. IDs marked `NOT_IMPLEMENTED` intentionally fail at the public acceptance boundary until their owning behavioral phases are implemented.
 
 Regenerate catalogue source and its manifest after a reviewed specification update:
 
