@@ -2,7 +2,7 @@ using Xunit;
 
 namespace AlpacaAgent.UnitTests.Acceptance;
 
-public sealed class ContractAcceptanceTests : AcceptanceTestBase
+public sealed class GeneratedContractAcceptanceTests : AcceptanceTestBase
 {
     [Fact]
     [Trait("StableId", "UT-001")]

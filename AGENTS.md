@@ -65,7 +65,7 @@ Each changelog must state the scope, key decisions, files changed, and validatio
 
 ## Current implementation baseline
 
-- The repository is at the Phase 2/2A compile-time skeleton and red acceptance-baseline stage.
+- The repository has the Phase 2/2A skeleton plus the first behavioral workflow-kernel slice (UT-040 through UT-055). Later Phase 3 PostgreSQL durability work remains incomplete.
 - Regenerate the Section 10 catalogue after an approved plan change with `./tools/Generate-AcceptanceCatalog.ps1` and require exactly 180 unique stable IDs.
-- `AcceptanceCatalog_SpecificationManifestAndDiscovery_AreComplete` must stay green. The 180 stable-ID tests are intentionally red with `NOT_IMPLEMENTED` until their owning production phases are implemented test-first.
+- `AcceptanceCatalog_SpecificationManifestAndDiscovery_AreComplete` must stay green. Stable-ID placeholders remain intentionally red with `NOT_IMPLEMENTED` until their owning production phases are implemented test-first; implemented IDs must be real public behavior tests and green.
 - Do not make the catalogue green by changing `SpecificationAcceptanceSkeleton`, weakening `AssertImplemented`, or routing IDs through a generic fake result. Replace each generated contract assertion with its owning public Domain/Application behavior as that phase is implemented.

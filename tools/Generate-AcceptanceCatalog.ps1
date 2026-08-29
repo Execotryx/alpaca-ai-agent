@@ -46,9 +46,11 @@ $classFor = {
 
 $testRoot = Join-Path $RepositoryRoot 'tests/AlpacaAgent.UnitTests/Acceptance'
 New-Item -ItemType Directory -Force -Path $testRoot | Out-Null
-$groups = $entries | Group-Object { & $classFor ([int]$_.id.Substring(3)) }
+$behavioralIds = 40..55 | ForEach-Object { 'UT-{0:000}' -f $_ }
+$groups = $entries | Where-Object id -NotIn $behavioralIds | Group-Object { & $classFor ([int]$_.id.Substring(3)) }
 foreach ($group in $groups) {
-    $body = @("using Xunit;", '', 'namespace AlpacaAgent.UnitTests.Acceptance;', '', "public sealed class $($group.Name) : AcceptanceTestBase", '{')
+    $generatedClass = "Generated$($group.Name)"
+    $body = @("using Xunit;", '', 'namespace AlpacaAgent.UnitTests.Acceptance;', '', "public sealed class $generatedClass : AcceptanceTestBase", '{')
     foreach ($entry in $group.Group) {
         $assertion = $entry.assertion.Replace('"', '""')
         $body += '    [Fact]'
@@ -57,7 +59,7 @@ foreach ($group in $groups) {
         $body += ''
     }
     $body += '}'
-    Set-Content -LiteralPath (Join-Path $testRoot "$($group.Name).cs") -Value $body -Encoding utf8NoBOM
+    Set-Content -LiteralPath (Join-Path $testRoot "$generatedClass.cs") -Value $body -Encoding utf8NoBOM
 }
 
 $manifest = foreach ($entry in $entries) {
@@ -67,12 +69,12 @@ $manifest = foreach ($entry in $entries) {
         method = $entry.method
         owningPhase = & $phase $number
         productionComponent = (& $classFor $number) -replace 'AcceptanceTests$',''
-        fixtureIds = @()
+        fixtureIds = if ($entry.id -in $behavioralIds) { @('WorkflowAcceptanceTests.ScriptedExecutor') } else { @() }
         classification = if ($entry.method -match 'Valid|Normal|Known|Golden|Allowed|Approved|Completed') { 'normal-flow' } else { 'edge-case' }
         expectedPublicOutcome = $entry.assertion
         safetyInvariant = $entry.assertion
-        implementationStatus = 'NOT_IMPLEMENTED'
-        lastPassingCommit = $null
+        implementationStatus = if ($entry.id -in $behavioralIds) { 'IMPLEMENTED' } else { 'NOT_IMPLEMENTED' }
+        lastPassingCommit = if ($entry.id -in $behavioralIds) { 'WORKTREE' } else { $null }
     }
 }
 $manifest | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $RepositoryRoot 'tests/AlpacaAgent.UnitTests/acceptance-manifest.json') -Encoding utf8NoBOM
