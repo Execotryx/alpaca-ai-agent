@@ -62,3 +62,10 @@ Document every requested repository change in `changes/` using:
 Use hyphens in the time component. Colons and other Windows-invalid filename characters are forbidden.
 
 Each changelog must state the scope, key decisions, files changed, and validation performed. In the final handoff, report the tests and checks actually run, any tests not run, and any remaining risk or deferred work. Use a concise commit message that describes the behavior or documentation change.
+
+## Current implementation baseline
+
+- The repository is at the Phase 2/2A compile-time skeleton and red acceptance-baseline stage.
+- Regenerate the Section 10 catalogue after an approved plan change with `./tools/Generate-AcceptanceCatalog.ps1` and require exactly 180 unique stable IDs.
+- `AcceptanceCatalog_SpecificationManifestAndDiscovery_AreComplete` must stay green. The 180 stable-ID tests are intentionally red with `NOT_IMPLEMENTED` until their owning production phases are implemented test-first.
+- Do not make the catalogue green by changing `SpecificationAcceptanceSkeleton`, weakening `AssertImplemented`, or routing IDs through a generic fake result. Replace each generated contract assertion with its owning public Domain/Application behavior as that phase is implemented.

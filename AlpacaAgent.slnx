@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AlpacaAgent.Api/AlpacaAgent.Api.csproj" />
+    <Project Path="src/AlpacaAgent.Application/AlpacaAgent.Application.csproj" />
+    <Project Path="src/AlpacaAgent.Domain/AlpacaAgent.Domain.csproj" />
+    <Project Path="src/AlpacaAgent.Infrastructure/AlpacaAgent.Infrastructure.csproj" />
+    <Project Path="src/AlpacaAgent.Persistence/AlpacaAgent.Persistence.csproj" />
+    <Project Path="src/AlpacaAgent.Worker/AlpacaAgent.Worker.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AlpacaAgent.ContractTests/AlpacaAgent.ContractTests.csproj" />
+    <Project Path="tests/AlpacaAgent.FailureInjectionTests/AlpacaAgent.FailureInjectionTests.csproj" />
+    <Project Path="tests/AlpacaAgent.PaperTests/AlpacaAgent.PaperTests.csproj" />
+    <Project Path="tests/AlpacaAgent.PersistenceTests/AlpacaAgent.PersistenceTests.csproj" />
+    <Project Path="tests/AlpacaAgent.ReplayTests/AlpacaAgent.ReplayTests.csproj" />
+    <Project Path="tests/AlpacaAgent.UnitTests/AlpacaAgent.UnitTests.csproj" />
+  </Folder>
+</Solution>

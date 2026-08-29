@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-AlpacaAgent.Worker-de4d465b-939f-4f39-b0a6-18de5b1a425d</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AlpacaAgent.Application\AlpacaAgent.Application.csproj" />
+    <ProjectReference Include="..\AlpacaAgent.Persistence\AlpacaAgent.Persistence.csproj" />
+    <ProjectReference Include="..\AlpacaAgent.Infrastructure\AlpacaAgent.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>
