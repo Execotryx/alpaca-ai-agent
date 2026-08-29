@@ -57,6 +57,8 @@ Use stable-ID or phase filters for the red/green loop, then run the full command
 
 Document every requested repository change in `changes/` using:
 
-`changes-dd-MM-yyyy-HH:mm:ss(brief sentence about changes made).md`
+`changes-dd-MM-yyyy-HH-mm-ss(brief sentence about changes made).md`
+
+Use hyphens in the time component. Colons and other Windows-invalid filename characters are forbidden.
 
 Each changelog must state the scope, key decisions, files changed, and validation performed. In the final handoff, report the tests and checks actually run, any tests not run, and any remaining risk or deferred work. Use a concise commit message that describes the behavior or documentation change.
