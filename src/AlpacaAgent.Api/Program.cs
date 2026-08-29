@@ -1,34 +1,16 @@
-var builder = WebApplication.CreateBuilder(args);
+using AlpacaAgent.Application.Ports;
+using AlpacaAgent.Persistence;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("PostgreSql");
+if (!string.IsNullOrWhiteSpace(connectionString)) builder.Services.AddAlpacaPostgresPersistence(connectionString);
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-
-app.UseHttpsRedirection();
-
-var summaries = new[]
+app.MapGet("/health", async (IServiceProvider services, CancellationToken cancellationToken) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    var kernel = services.GetService<IDurableWorkflowKernel>();
+    if (kernel is null) return Results.Json(new { status = "unhealthy", reason = "persistence-not-configured", brokerWritesEnabled = false }, statusCode: 503);
+    try { return Results.Ok(await kernel.ObserveHealthAsync(cancellationToken)); }
+    catch (Exception exception) { return Results.Json(new { status = "unhealthy", reason = exception.GetType().Name, brokerWritesEnabled = false }, statusCode: 503); }
 });
-
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

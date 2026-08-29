@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alpaca-agent.local/schemas/contracts/v1/agent-attempt-result.schema.json",
+  "title": "agent-attempt-result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "attemptId",
+    "observedAt",
+    "resolvedProvider",
+    "resolvedModel",
+    "providerRequestId",
+    "finishStatus",
+    "usage",
+    "durationMilliseconds",
+    "acceptedAssessmentReference",
+    "rawOutputReference",
+    "validationResults",
+    "failure",
+    "retryClassification",
+    "authoritativeness"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "attemptId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    },
+    "observedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "resolvedProvider": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "resolvedModel": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "providerRequestId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "finishStatus": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "usage": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "inputTokens",
+            "outputTokens",
+            "reasoningTokens"
+          ],
+          "properties": {
+            "inputTokens": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "outputTokens": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "reasoningTokens": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "durationMilliseconds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "acceptedAssessmentReference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rawOutputReference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "validationResults": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      }
+    },
+    "failure": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "retryClassification": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "authoritativeness": {
+      "enum": [
+        "Authoritative",
+        "Diagnostic"
+      ]
+    }
+  }
+}

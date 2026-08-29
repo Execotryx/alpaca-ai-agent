@@ -1,0 +1,428 @@
+[
+  {
+    "fixtureId": "FX-VALID-COVERED-CALL",
+    "schemaVersion": "1.0",
+    "scenario": "valid-covered-call-evaluation",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "bcf1603690cb52dc8780111adb17d3109db5e96c03d9df5b54ed4d720f138b49",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-040"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "COMPLETED",
+      "classification": "normal-flow",
+      "assertions": [
+        "one covered candidate",
+        "exact-set approval"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-SKIP-NO-ACTION",
+    "schemaVersion": "1.0",
+    "scenario": "skip-no-action",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "d0c8f164ac2da3a0caff9ff240a941b2b403f34b485ea267cd7b18d416bd5834",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-042"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "NO_ACTION",
+      "classification": "valid-assessment",
+      "assertions": [
+        "no candidate",
+        "no intent",
+        "no outbox"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-INSUFFICIENT-INFORMATION",
+    "schemaVersion": "1.0",
+    "scenario": "grounded-insufficient-information",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "64fc353bda5883cd27ea12f8c31de0ec9c00920be1af30f4fbfdceda48be0950",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-043"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "SAFELY_DEFERRED",
+      "classification": "valid-abstention",
+      "assertions": [
+        "missing evidence retained",
+        "no intent"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-MODEL-TIMEOUT",
+    "schemaVersion": "1.0",
+    "scenario": "model-timeout",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "9229ac0830ee83d6b46e4a31c2b6044e5c5cd033a720c4f8f5c68f4be5d266ff",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-044"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "SAFELY_DEFERRED",
+      "classification": "operational-failure",
+      "assertions": [
+        "not abstention",
+        "attempt preserved"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-MODEL-REFUSAL",
+    "schemaVersion": "1.0",
+    "scenario": "model-refusal",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "9229ac0830ee83d6b46e4a31c2b6044e5c5cd033a720c4f8f5c68f4be5d266ff",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-045"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "SAFELY_DEFERRED",
+      "classification": "operational-failure",
+      "assertions": [
+        "not abstention",
+        "attempt preserved"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-MODEL-RATE-LIMIT",
+    "schemaVersion": "1.0",
+    "scenario": "model-rate-limit",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "272151c28e43bfb675af090a97d65117cf842860f7da6151678edc3c0f88b60f",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-045"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "SAFELY_DEFERRED",
+      "classification": "operational-failure",
+      "assertions": [
+        "bounded retry",
+        "no intent"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-MODEL-TRUNCATION",
+    "schemaVersion": "1.0",
+    "scenario": "model-truncation",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "b1ae5e78f72a467dfd67fd984c15a81c378f10d701c1ae5f3ddb58c529d8e348",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-046"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "SAFELY_DEFERRED",
+      "classification": "operational-failure",
+      "assertions": [
+        "schema not repaired",
+        "no intent"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-CANDIDATE-REJECTION",
+    "schemaVersion": "1.0",
+    "scenario": "deterministic-candidate-rejection",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "548f4fc972d4662ae4266dcd4c5fbc3c3a62d165c9281ca39cf1d9699b92ae82",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-046"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "NO_ACTION",
+      "classification": "deterministic-rejection",
+      "assertions": [
+        "ordered reasons",
+        "no intent"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-PORTFOLIO-RISK-REJECTION",
+    "schemaVersion": "1.0",
+    "scenario": "portfolio-risk-rejection",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "9b1e14e611ac2c629060a613e44b5aaccece5e08b38ca8633535f4a92ee087e2",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-153"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "NO_ACTION",
+      "classification": "risk-rejection",
+      "assertions": [
+        "exact rule evidence",
+        "no intent"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-PARTIAL-FILL-CANCEL-RACE",
+    "schemaVersion": "1.0",
+    "scenario": "partial-fill-and-cancel-fill-race",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "69ed7bbb02f13f8d6233770d37caf78478ee8dc44fb51701bd0bc5da5525ce58",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-186"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "RECONCILIATION_REQUIRED",
+      "classification": "broker-race",
+      "assertions": [
+        "append observations",
+        "remaining quantity retained"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-CRASH-RESTART-NODES",
+    "schemaVersion": "1.0",
+    "scenario": "crash-and-restart-each-node",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "d80bd53c764a766e92ce0c5e67974e924ce6fc1c3dc4e9e33c5e805dbdfb5328",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "P3-DB-014"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "RESUMED",
+      "classification": "failure-injection",
+      "assertions": [
+        "durable checkpoint",
+        "no duplicate effect"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-EXPIRY-PENDING-CONFIRMATION",
+    "schemaVersion": "1.0",
+    "scenario": "expiration-pending-broker-confirmation",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "a6631293687aa3fe7de85814297d4728ccffe7f54e1271da5d80bae616694d4d",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-028"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "WAITING",
+      "classification": "lifecycle",
+      "assertions": [
+        "coverage retained",
+        "quote is not truth"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-EARLY-ASSIGNMENT",
+    "schemaVersion": "1.0",
+    "scenario": "early-assignment",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "a531b67f4b475ca311e6985a75f64a304f3f279762a0836079eac6c03480628d",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-027"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "ASSIGNED_PENDING_RECONCILIATION",
+      "classification": "lifecycle",
+      "assertions": [
+        "accepted before expiry",
+        "broker reconciliation required"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-ADJUSTED-CONTRACT",
+    "schemaVersion": "1.0",
+    "scenario": "split-or-adjusted-contract",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "34804f909bec3eaa47cef319e095729f11babfa11b652350a89b24f16ac5ae66",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-134"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "REJECTED",
+      "classification": "contract-safety",
+      "assertions": [
+        "not standard deliverable",
+        "no candidate"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-DUPLICATE-OUT-OF-ORDER",
+    "schemaVersion": "1.0",
+    "scenario": "duplicate-and-out-of-order-observations",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "99b80ee74dac465cb19a5d3e8710b6863888a3e1d29d92cd7c1c7d5769b3ef99",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-024"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "UNCHANGED",
+      "classification": "broker-ordering",
+      "assertions": [
+        "duplicate idempotent",
+        "terminal truth not regressed"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-STALE-INCOMPLETE-DOWNGRADE",
+    "schemaVersion": "1.0",
+    "scenario": "stale-quote-incomplete-pagination-feed-downgrade",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "7813fbd7052dd8373788559f007e0302fc76056aaa3acaf0639adf74787678a7",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-069"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "SAFELY_DEFERRED",
+      "classification": "data-quality",
+      "assertions": [
+        "no partial chain accepted",
+        "feed provenance retained"
+      ]
+    }
+  },
+  {
+    "fixtureId": "FX-PROMPT-INJECTION-CONFLICT",
+    "schemaVersion": "1.0",
+    "scenario": "prompt-injection-and-conflicting-sources",
+    "decisionTime": "2026-08-29T12:00:00Z",
+    "sourceTimes": [
+      "2026-08-29T11:55:00Z"
+    ],
+    "canonicalOrderingRule": "ordinal-property-order;preserve-array-order;invariant-numbers;utc-instants",
+    "canonicalContentHash": "73926d8f32cebb03fc5ef1c46e6443c90c6afc2720c9629bbd050cc8687cb052",
+    "provenance": "review-owned-remediation-fixture",
+    "expectedValidationState": "VALID",
+    "owningTests": [
+      "UT-107"
+    ],
+    "immutable": true,
+    "payload": {
+      "expectedOutcome": "INSUFFICIENT_INFORMATION",
+      "classification": "grounding-safety",
+      "assertions": [
+        "evidence cannot instruct",
+        "conflicts cited"
+      ]
+    }
+  }
+]

@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alpaca-agent.local/schemas/contracts/v1/portfolio-risk-decision.schema.json",
+  "title": "portfolio-risk-decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "decisionId",
+    "actionSetId",
+    "actionSetHash",
+    "snapshotAndPolicyReferences",
+    "ruleResults",
+    "projectedStateBeforeReference",
+    "projectedStateAfterReference",
+    "approved",
+    "approvalToken",
+    "approvalExpiresAt",
+    "invalidationConditions"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "decisionId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "actionSetId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "actionSetHash": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      }
+    },
+    "snapshotAndPolicyReferences": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      }
+    },
+    "ruleResults": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ruleId",
+          "passed",
+          "evidenceReference",
+          "threshold"
+        ],
+        "properties": {
+          "ruleId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "passed": {
+            "type": "boolean"
+          },
+          "evidenceReference": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "threshold": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          }
+        }
+      }
+    },
+    "projectedStateBeforeReference": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "projectedStateAfterReference": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "approved": {
+      "type": "boolean"
+    },
+    "approvalToken": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "approvalExpiresAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "invalidationConditions": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      }
+    }
+  }
+}

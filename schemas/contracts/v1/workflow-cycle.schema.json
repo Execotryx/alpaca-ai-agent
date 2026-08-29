@@ -1,0 +1,336 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alpaca-agent.local/schemas/contracts/v1/workflow-cycle.schema.json",
+  "title": "workflow-cycle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "cycleId",
+    "cycleType",
+    "scheduleKey",
+    "scheduledAt",
+    "startedAt",
+    "currentStep",
+    "status",
+    "budget",
+    "parentCycleId",
+    "replayReference",
+    "versions",
+    "durableCheckpointReference",
+    "terminalOutcome",
+    "terminalReason"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "cycleId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    },
+    "cycleType": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "scheduleKey": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "scheduledAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "currentStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 18
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "maximumDuration",
+        "retryLimit",
+        "agentAttemptLimit",
+        "externalCallLimit",
+        "actionLimit",
+        "modelToolLimit"
+      ],
+      "properties": {
+        "maximumDuration": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "retryLimit": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "agentAttemptLimit": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "externalCallLimit": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "actionLimit": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "modelToolLimit": {
+          "const": 0
+        }
+      }
+    },
+    "parentCycleId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "replayReference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "versions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workflowDefinition",
+        "contractSchema",
+        "policy",
+        "innerProfile",
+        "featureCalculation",
+        "prompt",
+        "requestedModel",
+        "resolvedModel",
+        "reasoningConfiguration",
+        "runtimeConnectorProviderSdk",
+        "deterministicDecisionLogic",
+        "persistenceMapping"
+      ],
+      "properties": {
+        "workflowDefinition": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        },
+        "contractSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        },
+        "policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        },
+        "innerProfile": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        },
+        "featureCalculation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        },
+        "prompt": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        },
+        "requestedModel": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        },
+        "resolvedModel": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        },
+        "reasoningConfiguration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        },
+        "runtimeConnectorProviderSdk": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        },
+        "deterministicDecisionLogic": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        },
+        "persistenceMapping": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        }
+      }
+    },
+    "durableCheckpointReference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "terminalOutcome": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "terminalReason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

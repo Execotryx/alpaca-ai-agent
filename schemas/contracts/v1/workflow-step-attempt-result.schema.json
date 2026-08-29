@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alpaca-agent.local/schemas/contracts/v1/workflow-step-attempt-result.schema.json",
+  "title": "workflow-step-attempt-result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "resultId",
+    "attemptId",
+    "observedAt",
+    "authoritativeness",
+    "outcome",
+    "classification",
+    "diagnosticReference",
+    "nextDueAt",
+    "outputReferences",
+    "checkpointReferences"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "resultId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "attemptId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    },
+    "observedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "authoritativeness": {
+      "enum": [
+        "Authoritative",
+        "Diagnostic"
+      ]
+    },
+    "outcome": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "classification": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "diagnosticReference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "nextDueAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "outputReferences": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      }
+    },
+    "checkpointReferences": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      }
+    }
+  }
+}

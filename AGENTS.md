@@ -65,7 +65,9 @@ Each changelog must state the scope, key decisions, files changed, and validatio
 
 ## Current implementation baseline
 
-- The repository has the Phase 2/2A skeleton plus the first behavioral workflow-kernel slice (UT-040 through UT-055). Later Phase 3 PostgreSQL durability work remains incomplete.
+- Phases 1–3 compliance remediation is in progress. Direct tests cover contract primitives (`UT-001`–`UT-012`), state machines (`UT-020`–`UT-032`), the reviewed workflow prototype (`UT-040`–`UT-055`), and profile containment (`UT-130`–`UT-131`).
+- Phase 3 persistence is implemented behind `IDurableWorkflowKernel` with an EF Core migration and explicit Npgsql claim/finalization transactions. Do not register production claim loops until PostgreSQL integration and failure-injection gates are green.
+- Phase 3 outbox delivery is limited to `ALERT`, `RECORDER`, and `TEST`; broker-write messages remain a hard failure.
 - Regenerate the Section 10 catalogue after an approved plan change with `./tools/Generate-AcceptanceCatalog.ps1` and require exactly 180 unique stable IDs.
 - `AcceptanceCatalog_SpecificationManifestAndDiscovery_AreComplete` must stay green. Stable-ID placeholders remain intentionally red with `NOT_IMPLEMENTED` until their owning production phases are implemented test-first; implemented IDs must be real public behavior tests and green.
-- Do not make the catalogue green by changing `SpecificationAcceptanceSkeleton`, weakening `AssertImplemented`, or routing IDs through a generic fake result. Replace each generated contract assertion with its owning public Domain/Application behavior as that phase is implemented.
+- Future expected-red IDs compile through explicitly named component boundaries; a universal stable-ID router is forbidden. Do not weaken `AssertExpectedRed` or route IDs through a generic fake result. Replace each generated boundary with its owning public Domain/Application behavior as that phase is implemented.

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "minItems": 180,
+  "maxItems": 180,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["stableId", "testMethod", "expectedAssertion", "productionTarget", "fixtureIds", "initialStatus", "initialEvidenceQuality", "remediationStatus"],
+    "properties": {
+      "stableId": { "type": "string", "pattern": "^UT-[0-9]{3}$" },
+      "testMethod": { "type": "string", "minLength": 1 },
+      "expectedAssertion": { "type": "string", "minLength": 1 },
+      "productionTarget": { "type": "string", "minLength": 1 },
+      "fixtureIds": { "type": "array", "items": { "type": "string" } },
+      "initialStatus": { "enum": ["NOT_IMPLEMENTED", "PARTIAL_REVIEW_REQUIRED"] },
+      "initialEvidenceQuality": { "enum": ["placeholder", "partial", "complete"] },
+      "remediationStatus": { "enum": ["EXPECTED_RED", "IMPLEMENTED_WORKTREE", "VERIFIED_COMMIT"] }
+    }
+  }
+}

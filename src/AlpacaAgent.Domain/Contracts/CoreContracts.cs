@@ -11,9 +11,9 @@ public readonly record struct IntentId(Guid Value);
 
 public enum CycleType { NewEntry, OpenOrderMonitor, PositionManagement, PreMarket, EndOfDay, ReplaySimulation, PerformanceReport }
 public enum StepStatus { Pending, Running, Completed, Skipped, SafelyDeferred, Failed }
-public enum PortfolioEligibilityState { Eligible, PendingReconciliation, Ineligible, SafeHalt }
-public enum OrderState { IntentCreated, Ready, SubmissionPending, SubmittedUnknown, Accepted, PartiallyFilled, Filled, CancelPending, Canceled, Expired, Rejected, ReconciliationRequired }
-public enum OptionLifecycleState { Open, ClosePending, AssignmentPending, ExpirationPending, Closed, Assigned, Expired, SafeHalt }
+public enum PortfolioEligibilityState { NoApprovedHolding, ApprovedButInsufficientShares, EligibleSharesAvailable, SharesPartiallyReserved, NoFreeCoverage, InconsistentOrUnreconciled, Paused }
+public enum OrderState { IntentPrepared, SubmissionPending, SubmittedUnknown, Working, PartiallyFilled, CancelPending, Filled, Canceled, Rejected, Expired, ReplacedExternal, ReconciliationRequired }
+public enum OptionLifecycleState { NoPosition, EntryOrderOpen, ShortCallOpen, CloseReview, CloseOrderOpen, NearExpiration, AssignmentPossible, ExpiredPendingConfirmation, AssignedPendingReconciliation, Closed, ExceptionOrSafeHalt }
 
 public sealed record WorkflowBudget(TimeSpan MaximumDuration, int RetryLimit, int AgentAttemptLimit, int ExternalCallLimit, int ActionLimit, int ModelToolLimit = 0);
 public sealed record ContractVersions(string Policy, string Schema, string Workflow, string Prompt, string Components);

@@ -1,5 +1,10 @@
 param([string]$RepositoryRoot = (Split-Path -Parent $PSScriptRoot))
 
+function Write-Utf8Lf([string]$Path, [string]$Content) {
+    $normalized = ($Content -replace "`r`n", "`n").TrimEnd("`r", "`n") + "`n"
+    [System.IO.File]::WriteAllText($Path, $normalized, [System.Text.UTF8Encoding]::new($false))
+}
+
 $planPath = Join-Path $RepositoryRoot 'Alpaca_AI_Agent_Framework_Neutral_Implementation_Plan.md'
 $matches = Select-String -LiteralPath $planPath -Pattern '^\| (UT-\d{3}) \| `([^`]+)` \| (.+) \|$'
 if ($matches.Count -ne 180) { throw "Expected 180 acceptance rows, found $($matches.Count)." }
@@ -46,35 +51,57 @@ $classFor = {
 
 $testRoot = Join-Path $RepositoryRoot 'tests/AlpacaAgent.UnitTests/Acceptance'
 New-Item -ItemType Directory -Force -Path $testRoot | Out-Null
-$behavioralIds = 40..55 | ForEach-Object { 'UT-{0:000}' -f $_ }
+$behavioralIds = @(
+    1..12
+    20..32
+    40..55
+    130..131
+) | ForEach-Object { 'UT-{0:000}' -f $_ }
 $groups = $entries | Where-Object id -NotIn $behavioralIds | Group-Object { & $classFor ([int]$_.id.Substring(3)) }
+$applicationAcceptanceRoot = Join-Path $RepositoryRoot 'src/AlpacaAgent.Application/Acceptance'
+New-Item -ItemType Directory -Force -Path $applicationAcceptanceRoot | Out-Null
+$boundaryBody = @('using AlpacaAgent.Domain.Acceptance;', '', 'namespace AlpacaAgent.Application.Acceptance;', '')
 foreach ($group in $groups) {
     $generatedClass = "Generated$($group.Name)"
-    $body = @("using Xunit;", '', 'namespace AlpacaAgent.UnitTests.Acceptance;', '', "public sealed class $generatedClass : AcceptanceTestBase", '{')
+    $boundaryClass = "$($group.Name -replace 'AcceptanceTests$','')FutureBoundary"
+    $body = @('using AlpacaAgent.Application.Acceptance;', 'using Xunit;', '', 'namespace AlpacaAgent.UnitTests.Acceptance;', '', "public sealed class $generatedClass : AcceptanceTestBase", '{', "    private readonly $boundaryClass boundary = new();", '')
+    $boundaryBody += "public sealed class $boundaryClass"
+    $boundaryBody += '{'
     foreach ($entry in $group.Group) {
         $assertion = $entry.assertion.Replace('"', '""')
         $body += '    [Fact]'
         $body += "    [Trait(`"StableId`", `"$($entry.id)`")]"
-        $body += ('    public void {0}() => AssertImplemented("{1}", @"{2}");' -f $entry.method, $entry.id, $assertion)
+        $body += '    [Trait("GateStatus", "ExpectedRedFuture")]'
+        $body += ('    public void {0}() => AssertExpectedRed("{1}", @"{2}", boundary.{0}());' -f $entry.method, $entry.id, $assertion)
         $body += ''
+        $boundaryBody += ('    public AcceptanceOutcome {0}() =>' -f $entry.method)
+        $boundaryBody += ('        AcceptanceOutcome.NotImplemented("{0}", @"{1}", @"{1}");' -f $entry.id, $assertion)
+        $boundaryBody += ''
     }
     $body += '}'
-    Set-Content -LiteralPath (Join-Path $testRoot "$generatedClass.cs") -Value $body -Encoding utf8NoBOM
+    $boundaryBody += '}'
+    $boundaryBody += ''
+    Write-Utf8Lf (Join-Path $testRoot "$generatedClass.cs") ($body -join "`n")
 }
+Write-Utf8Lf (Join-Path $applicationAcceptanceRoot 'GeneratedFutureAcceptanceBoundaries.cs') ($boundaryBody -join "`n")
 
 $manifest = foreach ($entry in $entries) {
     $number = [int]$entry.id.Substring(3)
+    $fixtureIds = [System.Collections.ArrayList]::new()
+    if ($entry.id -in (40..55 | ForEach-Object { 'UT-{0:000}' -f $_ })) {
+        [void]$fixtureIds.Add('WorkflowAcceptanceTests.ScriptedExecutor')
+    }
     [ordered]@{
         stableId = $entry.id
         method = $entry.method
         owningPhase = & $phase $number
         productionComponent = (& $classFor $number) -replace 'AcceptanceTests$',''
-        fixtureIds = if ($entry.id -in $behavioralIds) { @('WorkflowAcceptanceTests.ScriptedExecutor') } else { @() }
+        fixtureIds = $fixtureIds
         classification = if ($entry.method -match 'Valid|Normal|Known|Golden|Allowed|Approved|Completed') { 'normal-flow' } else { 'edge-case' }
         expectedPublicOutcome = $entry.assertion
         safetyInvariant = $entry.assertion
         implementationStatus = if ($entry.id -in $behavioralIds) { 'IMPLEMENTED' } else { 'NOT_IMPLEMENTED' }
-        lastPassingCommit = if ($entry.id -in $behavioralIds) { 'WORKTREE' } else { $null }
+        lastPassingCommit = $null
     }
 }
-$manifest | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $RepositoryRoot 'tests/AlpacaAgent.UnitTests/acceptance-manifest.json') -Encoding utf8NoBOM
+Write-Utf8Lf (Join-Path $RepositoryRoot 'tests/AlpacaAgent.UnitTests/acceptance-manifest.json') ($manifest | ConvertTo-Json -Depth 5)

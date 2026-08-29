@@ -8,7 +8,7 @@ public sealed class WorkflowAcceptanceTests
 {
     private static readonly DateTimeOffset Now = new(2026, 8, 29, 12, 0, 0, TimeSpan.Zero);
 
-    [Fact, Trait("StableId", "UT-040")]
+    [Fact, Trait("StableId", "UT-040"), Trait("GateStatus", "ActiveThroughPhase3")]
     public async Task NewEntryWorkflow_ValidInputsAndOneApprovedCandidate_TraversesApplicableNodesInDeclaredOrder()
     {
         var executor = ScriptedExecutor.At(WorkflowNode.PersistOrderIntents, WorkflowNodeResult.Wait("waiting-for-execution"));
@@ -19,7 +19,7 @@ public sealed class WorkflowAcceptanceTests
         Assert.All(result.Steps.Where(step => !WorkflowCatalog.ApplicableNodes("NEW_ENTRY").Contains(step.Node)), step => Assert.Equal(WorkflowStepState.Skipped, step.State));
     }
 
-    [Fact, Trait("StableId", "UT-041")]
+    [Fact, Trait("StableId", "UT-041"), Trait("GateStatus", "ActiveThroughPhase3")]
     public async Task NewEntryWorkflow_FilledOrderAndOpenCall_CompletesWithLifecycleScheduled()
     {
         var result = await Run("NEW_ENTRY", new ScriptedExecutor(), true);
@@ -28,7 +28,7 @@ public sealed class WorkflowAcceptanceTests
         Assert.Equal(WorkflowStepState.Completed, Step(result, WorkflowNode.InitializeOrEvaluateLifecycle).State);
     }
 
-    [Fact, Trait("StableId", "UT-042")]
+    [Fact, Trait("StableId", "UT-042"), Trait("GateStatus", "ActiveThroughPhase3")]
     public async Task NewEntryWorkflow_AgentReturnsSkip_EndsNoActionWithoutCandidateOrIntent()
     {
         var executor = ScriptedExecutor.At(WorkflowNode.ValidateAgentResult, WorkflowNodeResult.NoAction("SKIP"));
@@ -38,7 +38,7 @@ public sealed class WorkflowAcceptanceTests
         Assert.Equal("SKIP", result.Reason);
     }
 
-    [Fact, Trait("StableId", "UT-043")]
+    [Fact, Trait("StableId", "UT-043"), Trait("GateStatus", "ActiveThroughPhase3")]
     public async Task NewEntryWorkflow_AgentAbstains_EndsSafelyDeferredWithMissingInformation()
     {
         var result = await Run("NEW_ENTRY", ScriptedExecutor.At(WorkflowNode.ValidateAgentResult, WorkflowNodeResult.Defer("INSUFFICIENT_INFORMATION: earnings date unavailable")));
@@ -46,7 +46,7 @@ public sealed class WorkflowAcceptanceTests
         Assert.Contains("earnings date", result.Reason, StringComparison.Ordinal);
     }
 
-    [Fact, Trait("StableId", "UT-044")]
+    [Fact, Trait("StableId", "UT-044"), Trait("GateStatus", "ActiveThroughPhase3")]
     public async Task NewEntryWorkflow_AgentOperationalFailure_DefersAndDoesNotUseAblation()
     {
         var executor = ScriptedExecutor.At(WorkflowNode.AssessPolicy, WorkflowNodeResult.Defer("AGENT_TIMEOUT"));
@@ -55,7 +55,7 @@ public sealed class WorkflowAcceptanceTests
         Assert.DoesNotContain(WorkflowNode.MapPolicyProfile, executor.Executed);
     }
 
-    [Fact, Trait("StableId", "UT-045")]
+    [Fact, Trait("StableId", "UT-045"), Trait("GateStatus", "ActiveThroughPhase3")]
     public async Task NewEntryWorkflow_NoAdmissibleCandidate_EndsNoActionWithOrderedReasons()
     {
         var result = await Run("NEW_ENTRY", ScriptedExecutor.At(WorkflowNode.ApplyAdmissibilityChecks, WorkflowNodeResult.NoAction("spread;volume")));
@@ -63,7 +63,7 @@ public sealed class WorkflowAcceptanceTests
         Assert.Equal("spread;volume", result.Reason);
     }
 
-    [Fact, Trait("StableId", "UT-046")]
+    [Fact, Trait("StableId", "UT-046"), Trait("GateStatus", "ActiveThroughPhase3")]
     public async Task NewEntryWorkflow_RiskRejectsSet_EndsNoActionWithoutIntent()
     {
         var executor = ScriptedExecutor.At(WorkflowNode.ApprovePortfolioRisk, WorkflowNodeResult.NoAction("risk-rejected"));
@@ -72,7 +72,7 @@ public sealed class WorkflowAcceptanceTests
         Assert.DoesNotContain(WorkflowNode.PersistOrderIntents, executor.Executed);
     }
 
-    [Fact, Trait("StableId", "UT-047")]
+    [Fact, Trait("StableId", "UT-047"), Trait("GateStatus", "ActiveThroughPhase3")]
     public async Task ManagementWorkflow_AgentUnavailable_StillRunsDeterministicLifecycle()
     {
         var executor = new ScriptedExecutor();
@@ -82,7 +82,7 @@ public sealed class WorkflowAcceptanceTests
         Assert.Contains(WorkflowNode.InitializeOrEvaluateLifecycle, executor.Executed);
     }
 
-    [Fact, Trait("StableId", "UT-048")]
+    [Fact, Trait("StableId", "UT-048"), Trait("GateStatus", "ActiveThroughPhase3")]
     public async Task ManagementWorkflow_InvalidBrokerInputs_SafeHaltsRatherThanGuessing()
     {
         var result = await Run("POSITION_MANAGEMENT", ScriptedExecutor.At(WorkflowNode.ValidateDataQuality, WorkflowNodeResult.Fail("BROKER_TRUTH_INCONSISTENT")));
@@ -90,7 +90,7 @@ public sealed class WorkflowAcceptanceTests
         Assert.Equal("BROKER_TRUTH_INCONSISTENT", result.Reason);
     }
 
-    [Fact, Trait("StableId", "UT-049")]
+    [Fact, Trait("StableId", "UT-049"), Trait("GateStatus", "ActiveThroughPhase3")]
     public void WorkflowTemplate_InapplicableNode_IsSkippedAndCannotRun()
     {
         Assert.Equal(18, WorkflowCatalog.AllNodes.Count);
@@ -99,7 +99,7 @@ public sealed class WorkflowAcceptanceTests
         Assert.Contains(WorkflowNode.ApplyAdmissibilityChecks, WorkflowCatalog.Dependencies(WorkflowNode.SelectActionSet, "POSITION_MANAGEMENT"));
     }
 
-    [Fact, Trait("StableId", "UT-050")]
+    [Fact, Trait("StableId", "UT-050"), Trait("GateStatus", "ActiveThroughPhase3")]
     public void WorkflowRetry_RetryableFailureWithinBudget_SchedulesNewAttempt()
     {
         var decision = new WorkflowRetryPolicy(3, TimeSpan.FromSeconds(30)).Decide(1, FailureClassification.Retryable, Now);
@@ -108,7 +108,7 @@ public sealed class WorkflowAcceptanceTests
         Assert.Equal(Now.AddSeconds(30), decision.NextDueAt);
     }
 
-    [Fact, Trait("StableId", "UT-051")]
+    [Fact, Trait("StableId", "UT-051"), Trait("GateStatus", "ActiveThroughPhase3")]
     public void WorkflowRetry_BudgetExhausted_EndsFailedAndEscalated()
     {
         var decision = new WorkflowRetryPolicy(3, TimeSpan.FromSeconds(30)).Decide(3, FailureClassification.Retryable, Now);
@@ -116,7 +116,7 @@ public sealed class WorkflowAcceptanceTests
         Assert.Equal(WorkflowTerminalOutcome.FailedAndEscalated, decision.TerminalOutcome);
     }
 
-    [Fact, Trait("StableId", "UT-052")]
+    [Fact, Trait("StableId", "UT-052"), Trait("GateStatus", "ActiveThroughPhase3")]
     public void WorkflowDeadline_ExpiresDuringHandler_ResultCannotAdvanceCycle()
     {
         var authority = Authority();
@@ -125,7 +125,7 @@ public sealed class WorkflowAcceptanceTests
         Assert.Equal("DEADLINE_EXPIRED", decision.Classification);
     }
 
-    [Fact, Trait("StableId", "UT-053")]
+    [Fact, Trait("StableId", "UT-053"), Trait("GateStatus", "ActiveThroughPhase3")]
     public void WorkflowCancellation_PropagatesToPortAndPersistsClassifiedOutcome()
     {
         var authority = Authority();
@@ -134,7 +134,7 @@ public sealed class WorkflowAcceptanceTests
         Assert.Equal("CANCELED", decision.Classification);
     }
 
-    [Fact, Trait("StableId", "UT-054")]
+    [Fact, Trait("StableId", "UT-054"), Trait("GateStatus", "ActiveThroughPhase3")]
     public void Scheduler_DuplicateScheduleKey_ReturnsExistingCycleIdentity()
     {
         var scheduler = new IdempotentCycleScheduler();
@@ -143,7 +143,7 @@ public sealed class WorkflowAcceptanceTests
         Assert.Equal(first.CycleId, duplicate.CycleId);
     }
 
-    [Fact, Trait("StableId", "UT-055")]
+    [Fact, Trait("StableId", "UT-055"), Trait("GateStatus", "ActiveThroughPhase3")]
     public void CycleConflict_ManagementAndEntryOverlap_ManagementTakesPriority()
     {
         Assert.Equal(CycleConflictDecision.DeferNewEntry, CycleConflictPolicy.Evaluate(true, true, false));

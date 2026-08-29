@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alpaca-agent.local/schemas/contracts/v1/order-intent.schema.json",
+  "title": "order-intent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "intentId",
+    "intentKey",
+    "clientOrderId",
+    "actionSetReference",
+    "riskDecisionReference",
+    "contractId",
+    "side",
+    "quantity",
+    "orderType",
+    "limitPrice",
+    "timeInForce",
+    "submissionDeadline",
+    "cancellationRules",
+    "expectedPositionEffect",
+    "preWriteCheckpointReference"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "intentId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    },
+    "intentKey": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "clientOrderId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "actionSetReference": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "riskDecisionReference": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "contractId": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      }
+    },
+    "side": {
+      "enum": [
+        "Sell",
+        "Buy"
+      ]
+    },
+    "quantity": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "orderType": {
+      "enum": [
+        "Limit"
+      ]
+    },
+    "limitPrice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "properties": {
+        "amount": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "currency": {
+          "const": "USD"
+        }
+      }
+    },
+    "timeInForce": {
+      "enum": [
+        "Day",
+        "Gtc"
+      ]
+    },
+    "submissionDeadline": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "cancellationRules": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      }
+    },
+    "expectedPositionEffect": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "preWriteCheckpointReference": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    }
+  }
+}

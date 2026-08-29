@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alpaca-agent.local/schemas/contracts/v1/evidence-bundle.schema.json",
+  "title": "evidence-bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "bundleId",
+    "evaluatedSymbol",
+    "decisionTime",
+    "contentHash",
+    "evidence",
+    "validationState"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "bundleId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "evaluatedSymbol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      }
+    },
+    "decisionTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "contentHash": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "evidenceId",
+          "sourceIdentity",
+          "sourceAllowlisted",
+          "trustLabel",
+          "integrityState",
+          "publicationTime",
+          "eventTime",
+          "retrievalTime",
+          "contentReference",
+          "symbolRelevant",
+          "timeRelevant",
+          "duplicate",
+          "fresh",
+          "available",
+          "neutralClaim"
+        ],
+        "properties": {
+          "evidenceId": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            }
+          },
+          "sourceIdentity": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "sourceAllowlisted": {
+            "type": "boolean"
+          },
+          "trustLabel": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "integrityState": {
+            "enum": [
+              "Valid",
+              "Unknown",
+              "Unavailable",
+              "Invalid"
+            ]
+          },
+          "publicationTime": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "eventTime": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "retrievalTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "contentReference": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024
+          },
+          "symbolRelevant": {
+            "type": "boolean"
+          },
+          "timeRelevant": {
+            "type": "boolean"
+          },
+          "duplicate": {
+            "type": "boolean"
+          },
+          "fresh": {
+            "type": "boolean"
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "neutralClaim": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          }
+        }
+      }
+    },
+    "validationState": {
+      "enum": [
+        "Valid",
+        "Unknown",
+        "Unavailable",
+        "Invalid"
+      ]
+    }
+  }
+}

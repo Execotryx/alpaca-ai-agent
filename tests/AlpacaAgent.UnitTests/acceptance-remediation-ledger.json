@@ -1,0 +1,1802 @@
+[
+  {
+    "stableId": "UT-001",
+    "testMethod": "Quantity_CreateFractionalOptionContracts_IsRejected",
+    "expectedAssertion": "Option quantities cannot be fractional.",
+    "productionTarget": "Contract",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-002",
+    "testMethod": "Coverage_FromFractionalShares_CountsOnlyCompleteHundreds",
+    "expectedAssertion": "`99.999` yields zero blocks; `100.999` yields one.",
+    "productionTarget": "Contract",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-003",
+    "testMethod": "OptionalValue_UnknownInvalidUnavailableAndZero_RemainDistinct",
+    "expectedAssertion": "Four states survive mapping and JSON round-trip without coercion.",
+    "productionTarget": "Contract",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-004",
+    "testMethod": "Money_RoundAtDeclaredBoundary_UsesConfiguredRuleOnce",
+    "expectedAssertion": "Money is rounded exactly once at the declared boundary.",
+    "productionTarget": "Contract",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-005",
+    "testMethod": "Ratio_DivideByZero_ReturnsInvalidNotInfinity",
+    "expectedAssertion": "Invalid arithmetic cannot become a rankable value.",
+    "productionTarget": "Contract",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-006",
+    "testMethod": "ContractSchema_UnknownProperty_IsRejected",
+    "expectedAssertion": "`additionalProperties: false` is enforced.",
+    "productionTarget": "Contract",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-007",
+    "testMethod": "ContractSchema_MissingRequiredProperty_IsRejected",
+    "expectedAssertion": "Missingness is not filled with a default.",
+    "productionTarget": "Contract",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-008",
+    "testMethod": "ContractSchema_UnknownEnumValue_IsRejectedOrMigratedExplicitly",
+    "expectedAssertion": "No permissive enum fallback enters Domain.",
+    "productionTarget": "Contract",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-009",
+    "testMethod": "CanonicalHasher_PropertyAndDictionaryOrderVaries_HashIsStable",
+    "expectedAssertion": "Semantically identical records produce the same hash.",
+    "productionTarget": "Contract",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-010",
+    "testMethod": "CanonicalHasher_MaterialValueChanges_HashChanges",
+    "expectedAssertion": "Any executable or approval-bound value changes identity.",
+    "productionTarget": "Contract",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-011",
+    "testMethod": "DecisionTime_ParseDifferentOffsets_RepresentsSameInstant",
+    "expectedAssertion": "Offset-equivalent timestamps normalize to one UTC instant.",
+    "productionTarget": "Contract",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-012",
+    "testMethod": "PersistedContract_OlderSupportedVersion_UsesExplicitMigrator",
+    "expectedAssertion": "Supported old data is migrated deliberately; unsupported versions fail visibly.",
+    "productionTarget": "Contract",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-020",
+    "testMethod": "PortfolioEligibility_TransitionMatrix_AllDeclaredTransitionsMatchSpecification",
+    "expectedAssertion": "Theory covers every allowed source/event/target triple.",
+    "productionTarget": "StateMachine",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-021",
+    "testMethod": "PortfolioEligibility_InvalidTransition_EntersSafeHaltWithoutMutation",
+    "expectedAssertion": "Invalid transitions do not invent an eligible state.",
+    "productionTarget": "StateMachine",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-022",
+    "testMethod": "OrderState_TransitionMatrix_AllBrokerStatusesNormalizeDeterministically",
+    "expectedAssertion": "Covers `accepted`, `pending_new`, `new`, `held`, `accepted_for_bidding`, `partially_filled`, `done_for_day`, `pending_cancel`, `pending_replace`, `stopped`, `suspended`, `calculated`, `filled`, `canceled`, `expired`, `rejected`, and `replaced`.",
+    "productionTarget": "StateMachine",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-023",
+    "testMethod": "OrderState_UnknownBrokerStatus_RequiresReconciliation",
+    "expectedAssertion": "Future/unknown values fail closed rather than being treated as terminal.",
+    "productionTarget": "StateMachine",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-024",
+    "testMethod": "OrderState_TerminalObservationFollowedByOlderEvent_DoesNotRegress",
+    "expectedAssertion": "Out-of-order observations cannot reopen a terminal order.",
+    "productionTarget": "StateMachine",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-025",
+    "testMethod": "OrderState_TradeCorrectionOrBust_RecomputesCumulativeFill",
+    "expectedAssertion": "Corrected/busted activity changes derived fill state through a new observation.",
+    "productionTarget": "StateMachine",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-026",
+    "testMethod": "OptionLifecycle_TransitionMatrix_AllDeclaredTransitionsMatchSpecification",
+    "expectedAssertion": "Every declared lifecycle event has one next state and next action.",
+    "productionTarget": "StateMachine",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-027",
+    "testMethod": "OptionLifecycle_AssignmentObservedAtAnyAge_EntersAssignedPendingReconciliation",
+    "expectedAssertion": "Early assignment is accepted on any open-date state, not only expiry day.",
+    "productionTarget": "StateMachine",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-028",
+    "testMethod": "OptionLifecycle_ExpiryQuoteSeenWithoutBrokerConfirmation_RemainsPending",
+    "expectedAssertion": "A quote cannot release the obligation.",
+    "productionTarget": "StateMachine",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-029",
+    "testMethod": "OptionLifecycle_CloseFillConfirmed_ReleasesOnlyClosedQuantity",
+    "expectedAssertion": "Partial close retains the remaining obligation.",
+    "productionTarget": "StateMachine",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-030",
+    "testMethod": "TerminalWorkflowCycle_AnyFurtherAdvance_IsRejected",
+    "expectedAssertion": "Completed, no-action, safely-deferred, and failed cycles are immutable.",
+    "productionTarget": "StateMachine",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-031",
+    "testMethod": "Lifecycle_RollRequestedInMvp_IsRejectedAsOutOfScope",
+    "expectedAssertion": "No close, entry, intent, or broker write is created by an MVP roll request.",
+    "productionTarget": "StateMachine",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-032",
+    "testMethod": "StateTransition_DuplicateEvent_IsIdempotent",
+    "expectedAssertion": "Reprocessing an identical event produces no second effect.",
+    "productionTarget": "StateMachine",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-040",
+    "testMethod": "NewEntryWorkflow_ValidInputsAndOneApprovedCandidate_TraversesApplicableNodesInDeclaredOrder",
+    "expectedAssertion": "The reference new-entry template reaches intent waiting-for-execution; every applicable predecessor is terminal and every inapplicable node is `SKIPPED`.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-041",
+    "testMethod": "NewEntryWorkflow_FilledOrderAndOpenCall_CompletesWithLifecycleScheduled",
+    "expectedAssertion": "Normal broker observations lead to a managed open obligation and durable next-review request.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-042",
+    "testMethod": "NewEntryWorkflow_AgentReturnsSkip_EndsNoActionWithoutCandidateOrIntent",
+    "expectedAssertion": "Valid `SKIP` is not a failure and produces no executable artifact.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-043",
+    "testMethod": "NewEntryWorkflow_AgentAbstains_EndsSafelyDeferredWithMissingInformation",
+    "expectedAssertion": "Valid `INSUFFICIENT_INFORMATION` remains distinct from failure.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-044",
+    "testMethod": "NewEntryWorkflow_AgentOperationalFailure_DefersAndDoesNotUseAblation",
+    "expectedAssertion": "Timeout/refusal/etc. cannot silently select a deterministic policy.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-045",
+    "testMethod": "NewEntryWorkflow_NoAdmissibleCandidate_EndsNoActionWithOrderedReasons",
+    "expectedAssertion": "A valid AI call policy does not force a trade.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-046",
+    "testMethod": "NewEntryWorkflow_RiskRejectsSet_EndsNoActionWithoutIntent",
+    "expectedAssertion": "Intent creation is impossible after rejection.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-047",
+    "testMethod": "ManagementWorkflow_AgentUnavailable_StillRunsDeterministicLifecycle",
+    "expectedAssertion": "Existing obligations are not abandoned because node 6 is unavailable.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-048",
+    "testMethod": "ManagementWorkflow_InvalidBrokerInputs_SafeHaltsRatherThanGuessing",
+    "expectedAssertion": "Management continuation still requires broker/account truth.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-049",
+    "testMethod": "WorkflowTemplate_InapplicableNode_IsSkippedAndCannotRun",
+    "expectedAssertion": "A skipped node has a routing reason and does not block its template's applicable successor; an unmet applicable dependency still blocks execution.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-050",
+    "testMethod": "WorkflowRetry_RetryableFailureWithinBudget_SchedulesNewAttempt",
+    "expectedAssertion": "Retry advances attempt identity, preserves prior evidence, and respects next-due time.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-051",
+    "testMethod": "WorkflowRetry_BudgetExhausted_EndsFailedAndEscalated",
+    "expectedAssertion": "No unbounded retry loop occurs.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-052",
+    "testMethod": "WorkflowDeadline_ExpiresDuringHandler_ResultCannotAdvanceCycle",
+    "expectedAssertion": "Late completion becomes cancellation/lost authority.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-053",
+    "testMethod": "WorkflowCancellation_PropagatesToPortAndPersistsClassifiedOutcome",
+    "expectedAssertion": "Cancellation is observable and cannot be rewritten as success.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-054",
+    "testMethod": "Scheduler_DuplicateScheduleKey_ReturnsExistingCycleIdentity",
+    "expectedAssertion": "Application behavior is idempotent; the database uniqueness proof is added later.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-055",
+    "testMethod": "CycleConflict_ManagementAndEntryOverlap_ManagementTakesPriority",
+    "expectedAssertion": "New exposure is deferred while the same underlying requires lifecycle action.",
+    "productionTarget": "Workflow",
+    "fixtureIds": [],
+    "initialStatus": "PARTIAL_REVIEW_REQUIRED",
+    "initialEvidenceQuality": "partial",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-060",
+    "testMethod": "Freshness_SourceTimeAtBoundary_UsesDocumentedInclusiveRule",
+    "expectedAssertion": "Exactly-at-TTL behavior is fixed and tested; retrieval time does not replace source time.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-061",
+    "testMethod": "Freshness_SourceOldButRetrievedNow_IsStale",
+    "expectedAssertion": "A new download timestamp cannot freshen an old quote.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-062",
+    "testMethod": "QuoteQuality_MissingZeroNegativeCrossedOrInvalidQuote_IsRejected",
+    "expectedAssertion": "Theory covers each invalid bid/ask case with a stable reason.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-063",
+    "testMethod": "QuoteQuality_LockedQuote_FollowsFrozenPolicy",
+    "expectedAssertion": "The exact locked-market rule is explicit, not accidental.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-064",
+    "testMethod": "Snapshot_OutOfOrderObservation_DoesNotReplaceNewerSourceTruth",
+    "expectedAssertion": "Timestamp regression is ignored and audited.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-065",
+    "testMethod": "OptionChain_MissingPageTokenCompletion_IsIncomplete",
+    "expectedAssertion": "Partial pagination cannot masquerade as a complete universe.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-066",
+    "testMethod": "MarketFeed_IndicativeWhenOpraRequired_IsPolicyIneligible",
+    "expectedAssertion": "Feed downgrade is visible and blocks the affected decision.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-067",
+    "testMethod": "MarketSession_HolidayEarlyCloseOrDst_UsesClockAndCalendarInstant",
+    "expectedAssertion": "Theory uses real offset/early-close fixtures and no machine-local assumption.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-068",
+    "testMethod": "Account_OptionsLevelBelowOne_IsIneligible",
+    "expectedAssertion": "Covered-call entry requires the frozen minimum permission.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-069",
+    "testMethod": "Account_TradeBlockedOrBuyingPowerInsufficient_IsIneligible",
+    "expectedAssertion": "Account restriction wins over candidate attractiveness.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-070",
+    "testMethod": "Reconciler_NinetyNineShares_NoCoverage",
+    "expectedAssertion": "No contract is available.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-071",
+    "testMethod": "Reconciler_OneHundredFreeShares_OneCoverageBlock",
+    "expectedAssertion": "Exactly one standard contract may be covered.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-072",
+    "testMethod": "Reconciler_TwoHundredSharesAndOneShortCall_OneFreeBlock",
+    "expectedAssertion": "Existing obligations reduce free coverage.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-073",
+    "testMethod": "Reconciler_PendingShareSaleAndOptionOrders_ReserveCoverageOnce",
+    "expectedAssertion": "Reservations are deduplicated and subtracted once.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-074",
+    "testMethod": "Reconciler_NonStandardMultiplierOrAdjustedDeliverable_ManagementOnly",
+    "expectedAssertion": "Adjusted contracts do not enter the standard 100-share MVP path.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-075",
+    "testMethod": "Reconciler_ConflictingPositionOrderAndActivitySnapshots_SafeHalts",
+    "expectedAssertion": "Inconsistent broker truth cannot be resolved optimistically.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-076",
+    "testMethod": "Reconciler_DuplicateBrokerObservation_DoesNotDoubleCount",
+    "expectedAssertion": "Duplicate order/activity payloads are idempotent.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-077",
+    "testMethod": "CorporateAction_AffectsUnderlyingOrContract_InvalidatesEligibility",
+    "expectedAssertion": "Split, merger, symbol change, or special-dividend fixtures pause new entries.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-078",
+    "testMethod": "MarketHalt_OptionEntryRequested_IsRejectedWithMarketStateReason",
+    "expectedAssertion": "Halt/pause state blocks new options exposure.",
+    "productionTarget": "BrokerAndMarket",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-080",
+    "testMethod": "FeatureCalculator_FrozenObservations_ProducesGoldenFeatureVector",
+    "expectedAssertion": "Pure calculations reproduce the approved golden vector.",
+    "productionTarget": "FeatureAndEvidence",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-081",
+    "testMethod": "FeatureCalculator_FutureObservation_IsExcluded",
+    "expectedAssertion": "No observation available after decision time enters a feature.",
+    "productionTarget": "FeatureAndEvidence",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-082",
+    "testMethod": "FeatureCalculator_InsufficientLookback_ReturnsUnavailableNotZero",
+    "expectedAssertion": "Missing history is explicit.",
+    "productionTarget": "FeatureAndEvidence",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-083",
+    "testMethod": "OptionMetrics_KnownInputs_ProduceGoldenPremiumYieldBreakevenAndUpside",
+    "expectedAssertion": "Decimal conversions and rounding match the declared formula.",
+    "productionTarget": "FeatureAndEvidence",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-084",
+    "testMethod": "OptionMetrics_ThresholdMatrix_UsesDeclaredBoundarySemantics",
+    "expectedAssertion": "DTE, strike, spread, volume, open-interest, delta, and premium limits are tested just below, at, and above bounds.",
+    "productionTarget": "FeatureAndEvidence",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-085",
+    "testMethod": "EvidenceBuilder_ApprovedFreshSources_ProducesDeterministicNeutralBundle",
+    "expectedAssertion": "Same inputs yield the same evidence IDs, order, hash, and deterministic scope flags without semantic supporting/opposing labels.",
+    "productionTarget": "FeatureAndEvidence",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-086",
+    "testMethod": "EvidenceBuilder_DuplicateSyndicatedStory_KeepsCanonicalEvidenceOnce",
+    "expectedAssertion": "Duplicate content does not overweight one claim.",
+    "productionTarget": "FeatureAndEvidence",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-087",
+    "testMethod": "EvidenceBuilder_FutureOrStaleEvidence_ExcludesOrMarksPerPolicy",
+    "expectedAssertion": "Decision-time and recency rules are explicit.",
+    "productionTarget": "FeatureAndEvidence",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-088",
+    "testMethod": "EvidenceBuilder_UnavailablePaywalledOrInvalidBody_PreservesMissingness",
+    "expectedAssertion": "Missing body is not synthesized.",
+    "productionTarget": "FeatureAndEvidence",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-089",
+    "testMethod": "EvidenceBuilder_OversizedBody_TruncatesAtDeterministicSafeBoundary",
+    "expectedAssertion": "Size caps preserve provenance and a truncation marker.",
+    "productionTarget": "FeatureAndEvidence",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-090",
+    "testMethod": "EvidenceBuilder_InstructionLikeText_RemainsUntrustedEvidence",
+    "expectedAssertion": "Prompt-like text never enters trusted instructions.",
+    "productionTarget": "FeatureAndEvidence",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-091",
+    "testMethod": "EvidenceBuilder_DistinctClaimsFromDifferentSources_PreservesBothNeutralRecords",
+    "expectedAssertion": "Deterministic bundling does not remove distinct source claims; the AI assessment, not the builder, owns semantic conflict classification.",
+    "productionTarget": "FeatureAndEvidence",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-092",
+    "testMethod": "EvidenceBuilder_UnrelatedTickerMention_DoesNotExpandSymbolScope",
+    "expectedAssertion": "Evidence cannot silently add a tradable symbol.",
+    "productionTarget": "FeatureAndEvidence",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-093",
+    "testMethod": "PolicyInputPackage_EvidenceOrderCanonicalization_IsStable",
+    "expectedAssertion": "Input hash is stable under source-return order changes after canonicalization.",
+    "productionTarget": "FeatureAndEvidence",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-100",
+    "testMethod": "PolicyValidator_AllowedCallPoliciesWithValidEvidence_AreAccepted",
+    "expectedAssertion": "Theory covers conservative, balanced, and income policies.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-101",
+    "testMethod": "PolicyValidator_ValidSkip_IsAcceptedAsNoTrade",
+    "expectedAssertion": "`SKIP` is completed, not failed.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-102",
+    "testMethod": "PolicyValidator_ValidInsufficientInformation_IsAcceptedAsAbstention",
+    "expectedAssertion": "Required missing-information evidence is present.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-103",
+    "testMethod": "PolicyValidator_TimeoutRefusalRateLimitOrTruncation_IsOperationalFailure",
+    "expectedAssertion": "Theory proves none is converted to abstention.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-104",
+    "testMethod": "PolicyValidator_MalformedJsonOrMissingRequiredField_IsRejected",
+    "expectedAssertion": "Strict schema failure is classified.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-105",
+    "testMethod": "PolicyValidator_AdditionalProperty_IsRejected",
+    "expectedAssertion": "Extra fields never survive deserialization/validation.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-106",
+    "testMethod": "PolicyValidator_UnknownPolicySymbolOrEvidenceId_IsRejected",
+    "expectedAssertion": "All three allowlists are enforced.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-107",
+    "testMethod": "PolicyValidator_ExecutableFieldPresent_IsRejected",
+    "expectedAssertion": "Contract, strike, expiry, quantity, side, price, TIF, and broker-operation cases are covered.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-108",
+    "testMethod": "PolicyValidator_InputHashOrSchemaVersionMismatch_IsRejected",
+    "expectedAssertion": "Output cannot bind to a different input/configuration.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-109",
+    "testMethod": "PolicyValidator_MaterialClaimWithoutEvidence_IsRejected",
+    "expectedAssertion": "Every required material claim has supplied evidence support.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-110",
+    "testMethod": "PolicyValidator_DuplicateEvidenceReferences_DoNotIncreaseSupport",
+    "expectedAssertion": "Duplicate IDs are normalized or rejected per schema.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-111",
+    "testMethod": "PolicyValidator_ContradictionOmittedWhenInputsConflict_IsRejected",
+    "expectedAssertion": "Frozen conflict fixtures require explicit conflict treatment.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-112",
+    "testMethod": "PolicyValidator_LowOrContradictoryConfidence_FollowsFrozenRule",
+    "expectedAssertion": "Confidence cannot contradict policy/uncertainty requirements.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-113",
+    "testMethod": "PolicyValidator_ToolRequestOrToolCall_IsCapabilityViolation",
+    "expectedAssertion": "Any tool behavior is rejected and recorded.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-114",
+    "testMethod": "PolicyValidator_SessionThreadOrPreviousResponseIdentifier_IsCapabilityViolation",
+    "expectedAssertion": "Stateful metadata is prohibited.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-115",
+    "testMethod": "PolicyValidator_ResolvedModelDiffersFromFrozenModel_IsRejected",
+    "expectedAssertion": "Silent model/provider substitution blocks normal execution.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-116",
+    "testMethod": "PolicyAssessor_CancellationAndTimeout_ArePropagatedAndBounded",
+    "expectedAssertion": "Fake provider observes cancellation; attempt is classified once.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-117",
+    "testMethod": "PolicyAttempt_RetryCreatesImmutableStartAndResultAndPreservesPriorFailure",
+    "expectedAssertion": "Attempt 1 start/result remain unchanged; retry creates attempt 2 records and a late result cannot replace the authoritative workflow outcome.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-118",
+    "testMethod": "PolicyAssessment_ReorderedOrDuplicatedEvidenceFixture_ProducesStabilityMeasurement",
+    "expectedAssertion": "Variation is recorded without relaxing deterministic safety.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-119",
+    "testMethod": "PolicyAssessment_PromptInjectionFixture_CannotChangeCapabilityOrPolicySet",
+    "expectedAssertion": "Retrieved instructions do not alter trusted rules.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-120",
+    "testMethod": "PolicyValidator_OutputAtSizeLimitAcceptedAndAboveLimitRejected",
+    "expectedAssertion": "The exact output bound is enforced.",
+    "productionTarget": "Policy",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-130",
+    "testMethod": "PolicyProfile_EachInnerField_DoesNotExceedOuterLimit",
+    "expectedAssertion": "Property test covers all profile fields and permits equality where the policy declares it.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-131",
+    "testMethod": "PolicyProfile_AnyInnerLimitExceedsOuterLimit_IsRejected",
+    "expectedAssertion": "Theory mutates every bounded field beyond its outer limit.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "IMPLEMENTED_WORKTREE"
+  },
+  {
+    "stableId": "UT-132",
+    "testMethod": "CandidateGenerator_SkipAbstentionOrAgentFailure_ReturnsEmpty",
+    "expectedAssertion": "No executable candidate is produced for any non-call outcome.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-133",
+    "testMethod": "CandidateGenerator_OneFreeBlock_ProducesAtMostOneAllocationPerBlock",
+    "expectedAssertion": "Coverage references are explicit.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-134",
+    "testMethod": "CandidateGenerator_AdjustedInactiveOrUnknownContract_IsRejected",
+    "expectedAssertion": "Only active standard MVP contracts qualify.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-135",
+    "testMethod": "CandidateGenerator_DuplicatePendingActionForContract_IsRejected",
+    "expectedAssertion": "Existing/pending exposure prevents duplicate action.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-136",
+    "testMethod": "CandidateAdmissibility_BoundaryMatrix_MatchesFrozenProfile",
+    "expectedAssertion": "Expiry, strike, delta, spread, liquidity, event, and quote boundaries are exhaustive.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-137",
+    "testMethod": "CandidateAdmissibility_InvalidMetric_IsRejectedNotRankedLast",
+    "expectedAssertion": "Invalid data cannot survive as a low score.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-138",
+    "testMethod": "Ranker_GoldenCandidates_ProducesGoldenScoresAndOrder",
+    "expectedAssertion": "Same candidates and versions reproduce exact ranking.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-139",
+    "testMethod": "Ranker_InputOrderOrCultureChanges_ResultIsUnchanged",
+    "expectedAssertion": "Stable sort and invariant parsing eliminate environmental drift.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-140",
+    "testMethod": "Ranker_EqualScores_UsesDeclaredTieBreakChain",
+    "expectedAssertion": "Every tie-break field is covered in order.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-141",
+    "testMethod": "Selector_TwoCandidatesShareOneCoverageBlock_SelectsOnlyWinner",
+    "expectedAssertion": "One share block cannot be allocated twice.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-142",
+    "testMethod": "Selector_ZeroAdmissibleCandidates_ReturnsNoTradeWithReasons",
+    "expectedAssertion": "Empty result is explicit and auditable.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-143",
+    "testMethod": "Selector_IdenticalInputs_RepeatedRuns_ProduceSameActionSetHash",
+    "expectedAssertion": "Selection is deterministic.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-144",
+    "testMethod": "Selector_AblationDiffersFromAiPolicy_RecordsMaterialContribution",
+    "expectedAssertion": "Difference is reported, not used as a silent fallback.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-145",
+    "testMethod": "Selector_ActionCountBoundary_NeverExceedsCycleLimit",
+    "expectedAssertion": "Exact maximum and one-above cases are tested.",
+    "productionTarget": "Candidate",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-150",
+    "testMethod": "RiskGate_AllRulesPass_IssuesApprovalBoundToExactInputs",
+    "expectedAssertion": "Approval contains action-set and account/market/policy/reconciliation identities plus expiry.",
+    "productionTarget": "Risk",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-151",
+    "testMethod": "RiskGate_AnySingleRuleFails_RejectsCompleteSet",
+    "expectedAssertion": "Theory independently fails every ordered rule.",
+    "productionTarget": "Risk",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-152",
+    "testMethod": "RiskGate_IndividuallyValidActionsCollectivelyOvercommitShares_Rejects",
+    "expectedAssertion": "Aggregate safety supersedes candidate validity.",
+    "productionTarget": "Risk",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-153",
+    "testMethod": "RiskGate_CombinedConcentrationExpirationOrPortfolioLimitExceeded_Rejects",
+    "expectedAssertion": "Aggregate exposure boundaries are covered.",
+    "productionTarget": "Risk",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-154",
+    "testMethod": "RiskGate_DuplicateOrConflictingOrderExists_Rejects",
+    "expectedAssertion": "Broker-visible conflicts block approval.",
+    "productionTarget": "Risk",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-155",
+    "testMethod": "RiskGate_DailyOrderLossErrorOrRetryLimitReached_RejectsNewEntry",
+    "expectedAssertion": "Lifecycle management remains separately allowed.",
+    "productionTarget": "Risk",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-156",
+    "testMethod": "RiskGate_PauseOrKillSwitchActive_Rejects",
+    "expectedAssertion": "Every control scope is covered.",
+    "productionTarget": "Risk",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-157",
+    "testMethod": "Approval_QuotePositionPermissionOrReservationChanges_IsInvalid",
+    "expectedAssertion": "Any bound state change invalidates the token.",
+    "productionTarget": "Risk",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-158",
+    "testMethod": "Approval_PolicyOrComponentVersionChanges_IsInvalid",
+    "expectedAssertion": "Rollout drift cannot reuse an old approval.",
+    "productionTarget": "Risk",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-159",
+    "testMethod": "Approval_ExactlyAtExpiry_IsInvalid",
+    "expectedAssertion": "Time boundary is unambiguous.",
+    "productionTarget": "Risk",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-160",
+    "testMethod": "Approval_ActionSetReorderedCanonically_SameHashButChangedActionDifferentHash",
+    "expectedAssertion": "Canonical ordering is stable; material mutation is detected.",
+    "productionTarget": "Risk",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-161",
+    "testMethod": "RiskGate_Rejection_StoresEveryRuleResultInStableOrder",
+    "expectedAssertion": "Evaluation is complete and auditable, not short-circuited invisibly.",
+    "productionTarget": "Risk",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-162",
+    "testMethod": "PreSubmitCheck_KillSwitchActivatesAfterApproval_BlocksExternalWrite",
+    "expectedAssertion": "Final control state wins.",
+    "productionTarget": "Risk",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-163",
+    "testMethod": "PreSubmitCheck_QuoteBecomesStale_BlocksAndRequiresRevalidation",
+    "expectedAssertion": "Old approval is not patched.",
+    "productionTarget": "Risk",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-164",
+    "testMethod": "ConcurrentReservation_LoserCannotProduceReadyIntent",
+    "expectedAssertion": "Application handles failed reservation as safe re-reconciliation; database atomicity is later integration-tested.",
+    "productionTarget": "Risk",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-170",
+    "testMethod": "IntentFactory_ApprovedAction_CreatesImmutableExactOrderFields",
+    "expectedAssertion": "Only approved fields enter intent.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-171",
+    "testMethod": "IntentFactory_SameLogicalAction_CreatesSameStableIntentAndClientOrderId",
+    "expectedAssertion": "Retry/restart identity is deterministic and within the 128-character limit.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-172",
+    "testMethod": "IntentFactory_ChangedExecutableField_ChangesIdentityAndRequiresNewApproval",
+    "expectedAssertion": "An old identity cannot disguise a changed order.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-173",
+    "testMethod": "ExecuteHandler_NoCommittedCheckpointOrReadyIntent_DoesNotCallBroker",
+    "expectedAssertion": "Fake broker observes zero writes.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-174",
+    "testMethod": "ExecuteHandler_ReadyIntent_CallsBrokerOnceWithStoredClientOrderId",
+    "expectedAssertion": "No generated-at-call identity is permitted.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-175",
+    "testMethod": "ExecuteHandler_DefinitiveAcceptance_RecordsAcceptedNotFilled",
+    "expectedAssertion": "Acceptance does not create a position.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-176",
+    "testMethod": "ExecuteHandler_DefinitiveRejection_RecordsReasonAndNoRetry",
+    "expectedAssertion": "Terminal rejection is not blindly retried.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-177",
+    "testMethod": "ExecuteHandler_TimeoutDisconnectOrAmbiguousBody_EntersSubmittedUnknown",
+    "expectedAssertion": "Ambiguous POST outcomes all choose reconciliation.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-178",
+    "testMethod": "ExecuteHandler_RateLimitBeforeKnownSubmission_FollowsFrozenAmbiguityRule",
+    "expectedAssertion": "429 handling is explicit and cannot assume absence without proof.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-179",
+    "testMethod": "Reconciler_SubmittedUnknownLookupFindsOrder_AdoptsBrokerIdentityWithoutResubmit",
+    "expectedAssertion": "Accepted/open result prevents another POST.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-180",
+    "testMethod": "Reconciler_SubmittedUnknownLookupFindsFilledRejectedOrCanceled_MapsTerminalTruth",
+    "expectedAssertion": "Theory maps each result and writes no duplicate.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-181",
+    "testMethod": "Reconciler_SubmittedUnknownLookupAbsentButApprovalInvalid_SafeHalts",
+    "expectedAssertion": "Absence alone is insufficient for retry.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-182",
+    "testMethod": "Reconciler_SubmittedUnknownStillUnresolved_SchedulesBoundedPollAndNoWrite",
+    "expectedAssertion": "Unknown remains explicit.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-183",
+    "testMethod": "OrderObservation_DuplicateEvent_IsIdempotent",
+    "expectedAssertion": "No double fill or double reservation release.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-184",
+    "testMethod": "OrderObservation_OutOfOrderPartialAndFill_UsesMonotonicCumulativeTruth",
+    "expectedAssertion": "Event order cannot reduce filled quantity.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-185",
+    "testMethod": "PartialFill_RemainderRetainsCoverageAndOnlyRemainderMayBeCanceled",
+    "expectedAssertion": "Filled and working quantities are tracked independently.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-186",
+    "testMethod": "CancelHandler_FillWinsRace_RecordsFillAndDoesNotReleaseCoverageEarly",
+    "expectedAssertion": "Cancel acknowledgment/request is not terminal truth.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-187",
+    "testMethod": "ExternalReplaceObservation_OldOrderOrSuccessorSeen_ReconcilesWithoutCreatingIntent",
+    "expectedAssertion": "The MVP normalizes externally produced replacement statuses but never sends PATCH or assumes a successor.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-188",
+    "testMethod": "OrderChangeRequest_ConfirmedCancel_RequiresNewApprovalAndNewIntent",
+    "expectedAssertion": "Cancel-confirm-reapprove-new-submit remains separate controlled operations with a new identity.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-189",
+    "testMethod": "OrderStatus_UnknownFutureValue_RoutesToReconciliationAndAlert",
+    "expectedAssertion": "Forward compatibility fails safe.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-190",
+    "testMethod": "BrokerActivity_TradeCorrectOrTradeBust_ReconcilesPositionAndCashAgain",
+    "expectedAssertion": "Corrections create new observations and recalculate derived state.",
+    "productionTarget": "Execution",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-200",
+    "testMethod": "Lifecycle_OpenCoveredCall_SchedulesNextReviewAndKeepsSharesReserved",
+    "expectedAssertion": "Normal position management begins from broker-confirmed fill.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-201",
+    "testMethod": "Lifecycle_ProfitTargetReached_ProducesCloseProposalThroughRiskPath",
+    "expectedAssertion": "It cannot bypass selection, approval, or intent controls.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-202",
+    "testMethod": "Lifecycle_UnderlyingSharesFallBelowCoverage_EntersCriticalSafeHalt",
+    "expectedAssertion": "The system alerts and does not pretend the call remains covered.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-203",
+    "testMethod": "Lifecycle_AgentOutage_ExistingObligationStillEvaluated",
+    "expectedAssertion": "Management remains deterministic.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-204",
+    "testMethod": "Lifecycle_MarketDataInvalid_CloseDecisionDefersAndEscalatesSafely",
+    "expectedAssertion": "Deterministic does not mean data-free.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-205",
+    "testMethod": "Assignment_ActivityObservedBeforeExpiry_ReconcilesShareDelivery",
+    "expectedAssertion": "Early assignment closes option obligation only with broker evidence.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-206",
+    "testMethod": "Assignment_ExDividendRiskWindow_TriggersConfiguredReviewOrCloseRule",
+    "expectedAssertion": "Dividend-risk rule is deterministic and versioned.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-207",
+    "testMethod": "Assignment_WebSocketHasNoEvent_RestActivityPollStillFindsOutcome",
+    "expectedAssertion": "Lifecycle correctness does not depend on option NTA WebSocket delivery.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-208",
+    "testMethod": "Expiration_ExactlyOneCentItm_StaysPendingUntilBrokerAssignmentTruth",
+    "expectedAssertion": "Broker behavior is anticipated but never inferred as final.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-209",
+    "testMethod": "Expiration_OtmAtLastQuote_StaysPendingUntilBrokerExpiryTruth",
+    "expectedAssertion": "Last quote alone cannot release shares.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-210",
+    "testMethod": "Expiration_ConfirmationDelayedAcrossWeekend_KeepsReservation",
+    "expectedAssertion": "Calendar delay does not produce premature reuse.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-211",
+    "testMethod": "PaperActivity_DelayedUntilNextDay_RemainsPendingWithoutDuplicateAction",
+    "expectedAssertion": "Paper NTA lag is handled explicitly.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-212",
+    "testMethod": "CorporateAction_SplitChangesContractDeliverable_PausesAndReconcilesSuccessor",
+    "expectedAssertion": "Standard candidate logic is disabled for adjusted obligations.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-213",
+    "testMethod": "CorporateAction_BrokerCancelsOrder_RecordsCanceledReasonAndReconcilesReservation",
+    "expectedAssertion": "Cancellation does not imply user intent or immediate replacement.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-214",
+    "testMethod": "Lifecycle_ClosePartiallyFilled_KeepsRemainingContractsAndSharesReserved",
+    "expectedAssertion": "Partial close is safe.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-215",
+    "testMethod": "Lifecycle_AssignmentAndLateFillConflict_SafeHaltsForBrokerReconciliation",
+    "expectedAssertion": "Contradictory truth is visible and not guessed.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-216",
+    "testMethod": "Lifecycle_NextReview_PersistsUtcInstantAndSurvivesClockZoneChange",
+    "expectedAssertion": "Review scheduling is durable and timezone-independent.",
+    "productionTarget": "Lifecycle",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-220",
+    "testMethod": "FrozenReplay_StoredAcceptedAssessment_ReproducesExactDownstreamHashes",
+    "expectedAssertion": "Candidate, rank, set, risk, and intent identities match.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-221",
+    "testMethod": "FrozenReplay_LiveBrokerEvidenceOrAgentPortCalled_FailsTest",
+    "expectedAssertion": "Frozen replay uses immutable stored inputs only.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-222",
+    "testMethod": "FrozenReplay_CultureTimezoneAndInputEnumerationChange_ResultUnchanged",
+    "expectedAssertion": "Environmental variation does not alter deterministic output.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-223",
+    "testMethod": "FrozenReplay_CheckpointHashMismatch_FailsVisibly",
+    "expectedAssertion": "Corrupt or mismatched input cannot replay silently.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-224",
+    "testMethod": "AiReevaluation_NewAssessment_ProducesDiffWithoutMutatingProductionRecord",
+    "expectedAssertion": "Challenger output is evaluation-only.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-225",
+    "testMethod": "Simulation_FillPartialCancelExpireAssignMatrix_ProducesExpectedBrokerTruth",
+    "expectedAssertion": "Deterministic simulation covers the full declared outcome matrix.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-226",
+    "testMethod": "Simulation_FutureObservationRequested_IsRejectedAsLookAhead",
+    "expectedAssertion": "Historical decisions cannot see the future.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-227",
+    "testMethod": "ExplanationTemplate_CompletedDecision_ReferencesOnlyStoredFacts",
+    "expectedAssertion": "Baseline narrative is exact and reproducible.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-228",
+    "testMethod": "ExplanationAgent_MvpConfiguration_CannotBeInvokedOrAffectDecision",
+    "expectedAssertion": "The deferred component is disabled; deterministic templates remain authoritative.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-229",
+    "testMethod": "AuditRecord_SecretBearingInput_IsRedactedButCorrelationPreserved",
+    "expectedAssertion": "Secrets never enter audit/log payloads.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-230",
+    "testMethod": "RetryClassifier_ErrorMatrix_MatchesSafeRetryPolicy",
+    "expectedAssertion": "Read timeout, 429, 5xx, validation failure, ambiguous write, cancellation, and terminal rejection each map explicitly.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-231",
+    "testMethod": "Budget_TimeoutRetryAgentAttemptExternalCallAndActionLimitsAtBoundary_StopFurtherWork",
+    "expectedAssertion": "Exactly-at-limit and one-under cases are tested; model tool count remains zero.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-232",
+    "testMethod": "KillSwitch_Active_AllNewEntryPathsProduceZeroBrokerWrites",
+    "expectedAssertion": "Property test spans every node boundary after activation.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-233",
+    "testMethod": "SafetyInvariant_GeneratedCases_NeverExposeMoreCallsThanFreeCoverage",
+    "expectedAssertion": "Property-based core invariant with persisted failure seed.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-234",
+    "testMethod": "IdempotencyInvariant_RepeatedCommandOrEvent_ProducesAtMostOneLogicalEffect",
+    "expectedAssertion": "Property-based invariant covers workflow, intent, order observation, and lifecycle commands.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  },
+  {
+    "stableId": "UT-235",
+    "testMethod": "AuditInvariant_EveryTerminalOutcomeHasReasonVersionsAndInputReferences",
+    "expectedAssertion": "No terminal state is unexplained or unreplayable.",
+    "productionTarget": "CrossCutting",
+    "fixtureIds": [],
+    "initialStatus": "NOT_IMPLEMENTED",
+    "initialEvidenceQuality": "placeholder",
+    "remediationStatus": "EXPECTED_RED"
+  }
+]

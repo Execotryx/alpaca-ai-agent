@@ -10,8 +10,17 @@
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.4" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="JsonSchema.Net" Version="9.4.0" />
     <PackageReference Include="xunit" Version="2.9.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AlpacaAgent.Domain\AlpacaAgent.Domain.csproj" />
+    <ProjectReference Include="..\..\src\AlpacaAgent.Application\AlpacaAgent.Application.csproj" />
+    <None Include="..\..\schemas\contracts\v1\*.json" Link="schemas\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\fixtures\fixture-catalog.json" Link="fixtures\fixture-catalog.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\fixtures\fixture-catalog.schema.json" Link="fixtures\fixture-catalog.schema.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>

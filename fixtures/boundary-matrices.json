@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "1.0",
+  "portfolioEligibility": [
+    { "approved": false, "shares": 100, "reserved": 0, "reconciled": true, "paused": false, "state": "NoApprovedHolding" },
+    { "approved": true, "shares": 99, "reserved": 0, "reconciled": true, "paused": false, "state": "ApprovedButInsufficientShares" },
+    { "approved": true, "shares": 100, "reserved": 0, "reconciled": true, "paused": false, "state": "EligibleSharesAvailable" },
+    { "approved": true, "shares": 200, "reserved": 100, "reconciled": true, "paused": false, "state": "SharesPartiallyReserved" },
+    { "approved": true, "shares": 100, "reserved": 100, "reconciled": true, "paused": false, "state": "NoFreeCoverage" },
+    { "approved": true, "shares": 100, "reserved": 0, "reconciled": false, "paused": false, "state": "InconsistentOrUnreconciled" },
+    { "approved": true, "shares": 100, "reserved": 0, "reconciled": true, "paused": true, "state": "Paused" }
+  ],
+  "orderNormalization": [
+    { "raw": "accepted", "state": "Working" }, { "raw": "pending_new", "state": "Working" },
+    { "raw": "new", "state": "Working" }, { "raw": "held", "state": "Working" },
+    { "raw": "accepted_for_bidding", "state": "Working" }, { "raw": "partially_filled", "state": "PartiallyFilled" },
+    { "raw": "pending_cancel", "state": "CancelPending" }, { "raw": "filled", "state": "Filled" },
+    { "raw": "canceled", "state": "Canceled" }, { "raw": "rejected", "state": "Rejected" },
+    { "raw": "expired", "state": "Expired" }, { "raw": "pending_replace", "state": "ReconciliationRequired" },
+    { "raw": "replaced", "state": "ReplacedExternal" }, { "raw": "done_for_day", "state": "ReconciliationRequired" },
+    { "raw": "stopped", "state": "ReconciliationRequired" }, { "raw": "suspended", "state": "ReconciliationRequired" },
+    { "raw": "calculated", "state": "ReconciliationRequired" }, { "raw": "future_status", "state": "ReconciliationRequired" }
+  ],
+  "workflowTemplates": [
+    { "template": "NEW_ENTRY", "sourceTemplate": null, "nodes": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18] },
+    { "template": "OPEN_ORDER_MONITOR", "sourceTemplate": null, "nodes": [1,2,3,15,16,17,18] },
+    { "template": "POSITION_MANAGEMENT", "sourceTemplate": null, "nodes": [1,2,3,9,10,12,13,14,15,16,17,18] },
+    { "template": "PRE_MARKET", "sourceTemplate": null, "nodes": [1,2,3,4,5,17,18] },
+    { "template": "END_OF_DAY", "sourceTemplate": null, "nodes": [1,2,3,15,16,17,18] },
+    { "template": "REPLAY_SIMULATION", "sourceTemplate": "NEW_ENTRY", "nodes": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18] },
+    { "template": "PERFORMANCE_REPORT", "sourceTemplate": null, "nodes": [1,17,18] }
+  ],
+  "retryClassification": [
+    { "completedAttempts": 0, "maximumAttempts": 2, "classification": "Retryable", "retry": true, "terminal": "None" },
+    { "completedAttempts": 2, "maximumAttempts": 2, "classification": "Retryable", "retry": false, "terminal": "FailedAndEscalated" },
+    { "completedAttempts": 0, "maximumAttempts": 2, "classification": "Terminal", "retry": false, "terminal": "FailedAndEscalated" },
+    { "completedAttempts": 0, "maximumAttempts": 2, "classification": "Cancellation", "retry": false, "terminal": "SafelyDeferred" }
+  ],
+  "numericThresholds": [
+    { "field": "minimumDte", "boundary": 7, "inside": 7, "outside": 6 },
+    { "field": "maximumDte", "boundary": 45, "inside": 45, "outside": 46 },
+    { "field": "minimumDelta", "boundary": 0.10, "inside": 0.10, "outside": 0.09 },
+    { "field": "maximumDelta", "boundary": 0.40, "inside": 0.40, "outside": 0.41 },
+    { "field": "maximumSpreadRatio", "boundary": 0.15, "inside": 0.15, "outside": 0.16 },
+    { "field": "maximumContractsPerShareBlock", "boundary": 1, "inside": 1, "outside": 2 },
+    { "field": "maximumPortfolioExposure", "boundary": 0.25, "inside": 0.25, "outside": 0.26 },
+    { "field": "retryLimit", "boundary": 3, "inside": 3, "outside": 4 }
+  ],
+  "lifecycle": [
+    { "source": "NoPosition", "event": "EntrySubmitted", "target": "EntryOrderOpen" },
+    { "source": "EntryOrderOpen", "event": "EntryFilled", "target": "ShortCallOpen" },
+    { "source": "ShortCallOpen", "event": "CloseReviewDue", "target": "CloseReview" },
+    { "source": "CloseReview", "event": "CloseSubmitted", "target": "CloseOrderOpen" },
+    { "source": "ShortCallOpen", "event": "NearExpirationReached", "target": "NearExpiration" },
+    { "source": "NearExpiration", "event": "AssignmentRiskObserved", "target": "AssignmentPossible" },
+    { "source": "ShortCallOpen", "event": "ExpirationQuoteObserved", "target": "ExpiredPendingConfirmation" },
+    { "source": "ExpiredPendingConfirmation", "event": "BrokerExpirationConfirmed", "target": "Closed" },
+    { "source": "ShortCallOpen", "event": "AssignmentObserved", "target": "AssignedPendingReconciliation" },
+    { "source": "ShortCallOpen", "event": "InconsistencyDetected", "target": "ExceptionOrSafeHalt" }
+  ],
+  "controlBoundaries": [
+    { "boundary": "schedule", "required": true },
+    { "boundary": "claim", "required": true },
+    { "boundary": "finalize-before-outbox", "required": true },
+    { "boundary": "immediately-before-external-write", "required": true }
+  ]
+}

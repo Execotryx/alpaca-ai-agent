@@ -1,71 +1,80 @@
+using AlpacaAgent.Application.Acceptance;
 using Xunit;
 
 namespace AlpacaAgent.UnitTests.Acceptance;
 
 public sealed class GeneratedCandidateAcceptanceTests : AcceptanceTestBase
 {
-    [Fact]
-    [Trait("StableId", "UT-130")]
-    public void PolicyProfile_EachInnerField_DoesNotExceedOuterLimit() => AssertImplemented("UT-130", @"Property test covers all profile fields and permits equality where the policy declares it.");
-
-    [Fact]
-    [Trait("StableId", "UT-131")]
-    public void PolicyProfile_AnyInnerLimitExceedsOuterLimit_IsRejected() => AssertImplemented("UT-131", @"Theory mutates every bounded field beyond its outer limit.");
+    private readonly CandidateFutureBoundary boundary = new();
 
     [Fact]
     [Trait("StableId", "UT-132")]
-    public void CandidateGenerator_SkipAbstentionOrAgentFailure_ReturnsEmpty() => AssertImplemented("UT-132", @"No executable candidate is produced for any non-call outcome.");
+    [Trait("GateStatus", "ExpectedRedFuture")]
+    public void CandidateGenerator_SkipAbstentionOrAgentFailure_ReturnsEmpty() => AssertExpectedRed("UT-132", @"No executable candidate is produced for any non-call outcome.", boundary.CandidateGenerator_SkipAbstentionOrAgentFailure_ReturnsEmpty());
 
     [Fact]
     [Trait("StableId", "UT-133")]
-    public void CandidateGenerator_OneFreeBlock_ProducesAtMostOneAllocationPerBlock() => AssertImplemented("UT-133", @"Coverage references are explicit.");
+    [Trait("GateStatus", "ExpectedRedFuture")]
+    public void CandidateGenerator_OneFreeBlock_ProducesAtMostOneAllocationPerBlock() => AssertExpectedRed("UT-133", @"Coverage references are explicit.", boundary.CandidateGenerator_OneFreeBlock_ProducesAtMostOneAllocationPerBlock());
 
     [Fact]
     [Trait("StableId", "UT-134")]
-    public void CandidateGenerator_AdjustedInactiveOrUnknownContract_IsRejected() => AssertImplemented("UT-134", @"Only active standard MVP contracts qualify.");
+    [Trait("GateStatus", "ExpectedRedFuture")]
+    public void CandidateGenerator_AdjustedInactiveOrUnknownContract_IsRejected() => AssertExpectedRed("UT-134", @"Only active standard MVP contracts qualify.", boundary.CandidateGenerator_AdjustedInactiveOrUnknownContract_IsRejected());
 
     [Fact]
     [Trait("StableId", "UT-135")]
-    public void CandidateGenerator_DuplicatePendingActionForContract_IsRejected() => AssertImplemented("UT-135", @"Existing/pending exposure prevents duplicate action.");
+    [Trait("GateStatus", "ExpectedRedFuture")]
+    public void CandidateGenerator_DuplicatePendingActionForContract_IsRejected() => AssertExpectedRed("UT-135", @"Existing/pending exposure prevents duplicate action.", boundary.CandidateGenerator_DuplicatePendingActionForContract_IsRejected());
 
     [Fact]
     [Trait("StableId", "UT-136")]
-    public void CandidateAdmissibility_BoundaryMatrix_MatchesFrozenProfile() => AssertImplemented("UT-136", @"Expiry, strike, delta, spread, liquidity, event, and quote boundaries are exhaustive.");
+    [Trait("GateStatus", "ExpectedRedFuture")]
+    public void CandidateAdmissibility_BoundaryMatrix_MatchesFrozenProfile() => AssertExpectedRed("UT-136", @"Expiry, strike, delta, spread, liquidity, event, and quote boundaries are exhaustive.", boundary.CandidateAdmissibility_BoundaryMatrix_MatchesFrozenProfile());
 
     [Fact]
     [Trait("StableId", "UT-137")]
-    public void CandidateAdmissibility_InvalidMetric_IsRejectedNotRankedLast() => AssertImplemented("UT-137", @"Invalid data cannot survive as a low score.");
+    [Trait("GateStatus", "ExpectedRedFuture")]
+    public void CandidateAdmissibility_InvalidMetric_IsRejectedNotRankedLast() => AssertExpectedRed("UT-137", @"Invalid data cannot survive as a low score.", boundary.CandidateAdmissibility_InvalidMetric_IsRejectedNotRankedLast());
 
     [Fact]
     [Trait("StableId", "UT-138")]
-    public void Ranker_GoldenCandidates_ProducesGoldenScoresAndOrder() => AssertImplemented("UT-138", @"Same candidates and versions reproduce exact ranking.");
+    [Trait("GateStatus", "ExpectedRedFuture")]
+    public void Ranker_GoldenCandidates_ProducesGoldenScoresAndOrder() => AssertExpectedRed("UT-138", @"Same candidates and versions reproduce exact ranking.", boundary.Ranker_GoldenCandidates_ProducesGoldenScoresAndOrder());
 
     [Fact]
     [Trait("StableId", "UT-139")]
-    public void Ranker_InputOrderOrCultureChanges_ResultIsUnchanged() => AssertImplemented("UT-139", @"Stable sort and invariant parsing eliminate environmental drift.");
+    [Trait("GateStatus", "ExpectedRedFuture")]
+    public void Ranker_InputOrderOrCultureChanges_ResultIsUnchanged() => AssertExpectedRed("UT-139", @"Stable sort and invariant parsing eliminate environmental drift.", boundary.Ranker_InputOrderOrCultureChanges_ResultIsUnchanged());
 
     [Fact]
     [Trait("StableId", "UT-140")]
-    public void Ranker_EqualScores_UsesDeclaredTieBreakChain() => AssertImplemented("UT-140", @"Every tie-break field is covered in order.");
+    [Trait("GateStatus", "ExpectedRedFuture")]
+    public void Ranker_EqualScores_UsesDeclaredTieBreakChain() => AssertExpectedRed("UT-140", @"Every tie-break field is covered in order.", boundary.Ranker_EqualScores_UsesDeclaredTieBreakChain());
 
     [Fact]
     [Trait("StableId", "UT-141")]
-    public void Selector_TwoCandidatesShareOneCoverageBlock_SelectsOnlyWinner() => AssertImplemented("UT-141", @"One share block cannot be allocated twice.");
+    [Trait("GateStatus", "ExpectedRedFuture")]
+    public void Selector_TwoCandidatesShareOneCoverageBlock_SelectsOnlyWinner() => AssertExpectedRed("UT-141", @"One share block cannot be allocated twice.", boundary.Selector_TwoCandidatesShareOneCoverageBlock_SelectsOnlyWinner());
 
     [Fact]
     [Trait("StableId", "UT-142")]
-    public void Selector_ZeroAdmissibleCandidates_ReturnsNoTradeWithReasons() => AssertImplemented("UT-142", @"Empty result is explicit and auditable.");
+    [Trait("GateStatus", "ExpectedRedFuture")]
+    public void Selector_ZeroAdmissibleCandidates_ReturnsNoTradeWithReasons() => AssertExpectedRed("UT-142", @"Empty result is explicit and auditable.", boundary.Selector_ZeroAdmissibleCandidates_ReturnsNoTradeWithReasons());
 
     [Fact]
     [Trait("StableId", "UT-143")]
-    public void Selector_IdenticalInputs_RepeatedRuns_ProduceSameActionSetHash() => AssertImplemented("UT-143", @"Selection is deterministic.");
+    [Trait("GateStatus", "ExpectedRedFuture")]
+    public void Selector_IdenticalInputs_RepeatedRuns_ProduceSameActionSetHash() => AssertExpectedRed("UT-143", @"Selection is deterministic.", boundary.Selector_IdenticalInputs_RepeatedRuns_ProduceSameActionSetHash());
 
     [Fact]
     [Trait("StableId", "UT-144")]
-    public void Selector_AblationDiffersFromAiPolicy_RecordsMaterialContribution() => AssertImplemented("UT-144", @"Difference is reported, not used as a silent fallback.");
+    [Trait("GateStatus", "ExpectedRedFuture")]
+    public void Selector_AblationDiffersFromAiPolicy_RecordsMaterialContribution() => AssertExpectedRed("UT-144", @"Difference is reported, not used as a silent fallback.", boundary.Selector_AblationDiffersFromAiPolicy_RecordsMaterialContribution());
 
     [Fact]
     [Trait("StableId", "UT-145")]
-    public void Selector_ActionCountBoundary_NeverExceedsCycleLimit() => AssertImplemented("UT-145", @"Exact maximum and one-above cases are tested.");
+    [Trait("GateStatus", "ExpectedRedFuture")]
+    public void Selector_ActionCountBoundary_NeverExceedsCycleLimit() => AssertExpectedRed("UT-145", @"Exact maximum and one-above cases are tested.", boundary.Selector_ActionCountBoundary_NeverExceedsCycleLimit());
 
 }
